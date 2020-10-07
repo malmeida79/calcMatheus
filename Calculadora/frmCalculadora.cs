@@ -85,6 +85,11 @@ namespace Calculadora
             }
         }
 
+        private void btnPow_Click(object sender, EventArgs e)
+        {
+            AddOperator(sender);
+        }
+
         private void btnSquare_Click(object sender, EventArgs e)
         {
             txtDisplay.Text = Math.Sqrt(Convert.ToDouble(txtDisplay.Text)).ToString();
@@ -250,6 +255,10 @@ namespace Calculadora
             {
                 txtDisplay.Text = total.ToString();
             }
+            else if (operacao == "EX")
+            {
+                txtDisplay.Text = Math.Pow((double)total, (double)number).ToString();
+            }
         }
 
         /// <summary>
@@ -345,5 +354,7 @@ namespace Calculadora
         }
 
         #endregion
+
+   
     }
 }
