@@ -259,7 +259,19 @@ namespace Calculadora
         private void SetDisplayNumber(object sender)
         {
             string number = (sender as Button).Text;
-            txtDisplay.Text += number;
+
+            if (number == "+/-")
+            {
+                if (txtDisplay.Text.Length > 0)
+                {
+                    var tratamento = Convert.ToDecimal(txtDisplay.Text) * -1;
+                    txtDisplay.Text = tratamento.ToString();
+                }
+            }
+            else
+            {
+                txtDisplay.Text += number;
+            }
         }
 
         /// <summary>
