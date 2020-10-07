@@ -1,0 +1,10 @@
+D:\Matheus\calculadora\Calculadora\Calculadora\bin\Debug\Calculadora.exe.config
+D:\Matheus\calculadora\Calculadora\Calculadora\bin\Debug\Calculadora.exe
+D:\Matheus\calculadora\Calculadora\Calculadora\bin\Debug\Calculadora.pdb
+D:\Matheus\calculadora\Calculadora\Calculadora\obj\Debug\Calculadora.csprojAssemblyReference.cache
+D:\Matheus\calculadora\Calculadora\Calculadora\obj\Debug\Calculadora.Properties.Resources.resources
+D:\Matheus\calculadora\Calculadora\Calculadora\obj\Debug\Calculadora.csproj.GenerateResource.cache
+D:\Matheus\calculadora\Calculadora\Calculadora\obj\Debug\Calculadora.csproj.CoreCompileInputs.cache
+D:\Matheus\calculadora\Calculadora\Calculadora\obj\Debug\Calculadora.exe
+D:\Matheus\calculadora\Calculadora\Calculadora\obj\Debug\Calculadora.pdb
+D:\Matheus\calculadora\Calculadora\Calculadora\obj\Debug\Calculadora.frmCalculadora.resources
