@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MotorDeCalculo;
 
 namespace Calculadora
 {
@@ -8,7 +9,6 @@ namespace Calculadora
     {
         #region Declarations
 
-        private decimal total = 0;
         private List<decimal> numbers = new List<decimal>();
         private List<string> sinals = new List<string>();
         private string ultimoSinal = "";
@@ -92,8 +92,8 @@ namespace Calculadora
 
         private void btnSquare_Click(object sender, EventArgs e)
         {
-            txtDisplay.Text = Math.Sqrt(Convert.ToDouble(txtDisplay.Text)).ToString();
-            total = 0;
+            Operator opr = new Operator();
+            txtDisplay.Text = opr.Square(Convert.ToDouble(txtDisplay.Text)).ToString();
         }
 
         private void btnCE_Click(object sender, EventArgs e)
@@ -148,32 +148,20 @@ namespace Calculadora
             // na lista de calculos
             numbers.Add(decimal.Parse(txtDisplay.Text));
 
-            for (int i = 0; i < numbers.Count; i++)
-            {
-                if (i > 0)
-                {
-                    MakeOperation(sinals[i - 1], numbers[i]);
-
-                    if (ultimoNumero == 0)
-                    {
-                        // guardar o ultimo numero e sinal para o caso
-                        // do usuario querer usar o igual varias vezes.
-                        ultimoSinal = sinals[i - 1];
-                        ultimoNumero = numbers[i];
-                    }
-                }
-                else
-                {
-                    // na primeira volta igualamos o total ao 
-                    // primeiro numero inserido e a partir
-                    // da segunda fazemos a conta de acordo
-                    // com o sinal.
-                    total = numbers[i];
-                }
-            }
+            Operator opr = new Operator();
 
             // apresenta o total
-            txtDisplay.Text = total.ToString();
+            txtDisplay.Text = opr.ProcessaFila(numbers, sinals).ToString();
+
+            // recupera o erro
+            var erro = opr.GetErro();
+
+            if (ultimoNumero == 0)
+            {
+                // guardando ultimo numero e sinal inseridos
+                ultimoSinal = sinals[0];
+                ultimoNumero = numbers[1];
+            }
 
             // limpa dados (mantem a tela e vars de controle)
             LimpaDados(true, false);
@@ -217,49 +205,7 @@ namespace Calculadora
 
         #region Metodos Internos
 
-        /// <summary>
-        /// Realiza a operação
-        /// </summary>
-        /// <param name="operacao">Qual operacao realizar</param>
-        /// <param name="number">qual numero sera usado no calculo</param>
-        private void MakeOperation(string operacao, decimal number)
-        {
-            if (operacao == "+")
-            {
-                total += number;
-            }
-            else if (operacao == "-")
-            {
-                total = total - number;
-            }
-            else if (operacao == "/")
-            {
-                if (number > 0)
-                {
-                    total = total / number;
-                }
-                else
-                {
-                    MessageBox.Show("Não pode dividir por zero!", ":: Erro ::", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (operacao == "*")
-            {
-                total = total * number;
-            }
-            else if (operacao == "%")
-            {
-                total = number * (total / 100);
-            }
-            else if (operacao == "=")
-            {
-                txtDisplay.Text = total.ToString();
-            }
-            else if (operacao == "EX")
-            {
-                txtDisplay.Text = Math.Pow((double)total, (double)number).ToString();
-            }
-        }
+
 
         /// <summary>
         /// leva um numero ate o display
@@ -312,7 +258,6 @@ namespace Calculadora
 
             sinals.Clear();
             numbers.Clear();
-            total = 0;
         }
 
         private bool PodeVirgula()
@@ -353,8 +298,6 @@ namespace Calculadora
             }
         }
 
-        #endregion
-
-   
+        #endregion   
     }
 }

@@ -79,5 +79,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MotorDeCalculo\MotorDeCalculo.csproj">
+      <Project>{d3bdb7d0-c01c-4f68-9acc-b154cec27f4f}</Project>
+      <Name>MotorDeCalculo</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
